@@ -1,0 +1,144 @@
+  [1m[35m (6.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to DeviseCreateUsers (20210706135744)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210706135744"]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-07-06 13:57:50.637575"], ["updated_at", "2021-07-06 13:57:50.637575"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateJwtDenylist (20210706135933)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "jwt_denylist" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "jti" varchar NOT NULL, "exp" datetime NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_jwt_denylist_on_jti" ON "jwt_denylist" ("jti")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210706135933"]]
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/member-data" for ::1 at 2021-07-06 17:05:16 +0300
+  [1m[35m (6.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (3.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [POST] "/member-data"):
+  
+Started POST "/member-data" for ::1 at 2021-07-06 17:05:36 +0300
+  
+ActionController::RoutingError (No route matches [POST] "/member-data"):
+  
+Started POST "/users" for ::1 at 2021-07-06 17:06:49 +0300
+Processing by Users::RegistrationsController#create as */*
+  Parameters: {"user"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}, "registration"=>{"user"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (1.7ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "test@example.com"], ["encrypted_password", "$2a$12$gLKWrwPDjG.bMgJuRbCc.ukvfmqGk8DR6PIbW1LjiQDn7jB59tthG"], ["created_at", "2021-07-06 14:06:49.818899"], ["updated_at", "2021-07-06 14:06:49.818899"]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 661ms (Views: 0.4ms | ActiveRecord: 4.6ms | Allocations: 12790)
+
+
+Started POST "/users/sign_in" for ::1 at 2021-07-06 17:07:03 +0300
+Processing by Users::SessionsController#create as */*
+  Parameters: {"user"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "test@example.com"], ["LIMIT", 1]]
+Completed 200 OK in 352ms (Views: 0.2ms | ActiveRecord: 0.4ms | Allocations: 2513)
+
+
+Started POST "/member-data" for ::1 at 2021-07-06 17:07:41 +0300
+  
+ActionController::RoutingError (No route matches [POST] "/member-data"):
+  
+Started GET "/member-data" for ::1 at 2021-07-06 17:07:45 +0300
+Processing by MembersController#show as */*
+  Parameters: {"user"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}, "member"=>{"user"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mJwtDenylist Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "jwt_denylist" WHERE "jwt_denylist"."jti" = ? LIMIT ?[0m  [["jti", "a7e5814a-2f47-4389-81b0-c8e5f63e6f62"], ["LIMIT", 1]]
+Completed 200 OK in 9ms (Views: 0.2ms | ActiveRecord: 1.2ms | Allocations: 2543)
+
+
+Started GET "/member-data" for ::1 at 2021-07-06 17:07:51 +0300
+Processing by MembersController#show as */*
+  Parameters: {"user"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}, "member"=>{"user"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 67)
+
+
+Started GET "/users/sign_in" for ::1 at 2021-07-06 17:07:51 +0300
+Processing by Users::SessionsController#new as */*
+Completed 200 OK in 3ms (Views: 1.4ms | ActiveRecord: 0.0ms | Allocations: 291)
+
+
+Started GET "/member-data" for ::1 at 2021-07-06 17:08:12 +0300
+Processing by MembersController#show as */*
+  Parameters: {"user"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}, "member"=>{"user"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}}
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 58)
+
+
+Started GET "/users/sign_in" for ::1 at 2021-07-06 17:08:12 +0300
+Processing by Users::SessionsController#new as */*
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 289)
+
+
+Started GET "/member-data" for ::1 at 2021-07-06 17:08:24 +0300
+Processing by MembersController#show as */*
+  Parameters: {"user"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}, "member"=>{"user"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}}
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 56)
+
+
+Started GET "/users/sign_in" for ::1 at 2021-07-06 17:08:24 +0300
+Processing by Users::SessionsController#new as */*
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 283)
+
+
+Started GET "/member-data" for ::1 at 2021-07-06 17:08:26 +0300
+Processing by MembersController#show as */*
+  Parameters: {"user"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}, "member"=>{"user"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mJwtDenylist Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "jwt_denylist" WHERE "jwt_denylist"."jti" = ? LIMIT ?[0m  [["jti", "a7e5814a-2f47-4389-81b0-c8e5f63e6f62"], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.4ms | Allocations: 1813)
+
+
+Started GET "/member-data" for ::1 at 2021-07-07 09:20:00 +0300
+  [1m[35m (2.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by MembersController#show as */*
+  Parameters: {"user"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}, "member"=>{"user"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}}
+Completed 401 Unauthorized in 5ms (ActiveRecord: 0.0ms | Allocations: 980)
+
+
+Started GET "/users/sign_in" for ::1 at 2021-07-07 09:20:00 +0300
+Processing by Users::SessionsController#new as */*
+Completed 200 OK in 75ms (Views: 0.7ms | ActiveRecord: 2.9ms | Allocations: 7629)
+
+
+Started GET "/member-data" for ::1 at 2021-07-07 09:20:42 +0300
+Processing by MembersController#show as */*
+  Parameters: {"user"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}, "member"=>{"user"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/members_controller.rb:5:in `show'
+  [1m[36mUser Load (3.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/members_controller.rb:5:in `show'
+Completed 200 OK in 27ms (Views: 25.5ms | ActiveRecord: 5.1ms | Allocations: 5530)
+
+
+Started GET "/member-data" for ::1 at 2021-07-07 09:20:52 +0300
+Processing by MembersController#show as */*
+  Parameters: {"user"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}, "member"=>{"user"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}}
+Completed 401 Unauthorized in 10ms (Allocations: 667)
+
+
+Started GET "/users/sign_in" for ::1 at 2021-07-07 09:20:53 +0300
+Processing by Users::SessionsController#new as */*
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Completed 200 OK in 26ms (Views: 0.3ms | ActiveRecord: 2.8ms | Allocations: 4995)
+
+
